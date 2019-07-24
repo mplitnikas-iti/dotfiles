@@ -1,0 +1,16 @@
+https://realpython.com/vim-and-python-a-match-made-in-heaven/
+https://ricostacruz.com/til/neovim-with-python-on-osx
+vim / neovim
+
+plugin manager:
+vundle
+vim-plug
+
+plugins:
+nerdtree
+deoplete
+	https://github.com/Shougo/deoplete.nvim
+	https://www.gregjs.com/vim/2016/configuring-the-deoplete-asynchronous-keyword-completion-plugin-with-tern-for-vim/
+vim-surround
+python-mode
+	https://github.com/python-mode/python-mode
