@@ -7,12 +7,12 @@ call plug#begin()
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'tpope/vim-fugitive'
 	Plug 'othree/xml.vim'
-	"Plug 'adelarsq/vim-matchit'
 	Plug 'Raimondi/delimitMate'
 	Plug 'jacquesbh/vim-showmarks'
 
 	" colorscheme
 	Plug 'mhartington/oceanic-next'
+	Plug 'ryanoasis/vim-devicons'
 
 	" python
 	Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
@@ -23,9 +23,7 @@ call plug#begin()
 	Plug 'posva/vim-vue'
 
 	" cloudformation
-	"Plug 'm-kat/aws-vim'
 	Plug 'elzr/vim-json'
-	Plug 'NLKNguyen/cloudformation-syntax.vim'
 call plug#end()
 
 " plugin setup
