@@ -11,15 +11,18 @@ call plug#begin()
 	Plug 'Raimondi/delimitMate'
 	Plug 'jacquesbh/vim-showmarks'
 
-	"python
+	" colorscheme
+	Plug 'mhartington/oceanic-next'
+
+	" python
 	Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 	Plug 'deoplete-plugins/deoplete-jedi'
 	Plug 'tmhedberg/SimpylFold'
 
-	"vue
+	" vue
 	Plug 'posva/vim-vue'
 
-	"cloudformation
+	" cloudformation
 	"Plug 'm-kat/aws-vim'
 	Plug 'elzr/vim-json'
 	Plug 'NLKNguyen/cloudformation-syntax.vim'
@@ -31,7 +34,7 @@ let g:deoplete#enable_at_startup = 1
 let g:python3_host_prog = '/usr/local/bin/python3'
 let g:python_host_prog = '/usr/bin/python'
 let g:SimpylFold_docstring_preview = 1
-let g:airline_theme = 'onedark'
+let g:airline_theme = 'oceanicnext'
 let g:showmarks_marks = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 let g:AWSVimValidate = 1
 
@@ -47,6 +50,13 @@ set autoindent
 set cindent
 set showmatch
 set updatetime=100
+
+" colorscheme setup
+if (has("termguicolors"))
+	set termguicolors
+endif
+syntax enable
+colorscheme OceanicNext
 
 " keybinds etc
 let mapleader = ","
