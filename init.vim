@@ -9,6 +9,8 @@ call plug#begin()
 	Plug 'othree/xml.vim'
 	Plug 'Raimondi/delimitMate'
 	Plug 'jacquesbh/vim-showmarks'
+	"Plug 'vim-scripts/L9'
+	"Plug 'vim-scripts/FuzzyFinder'
 
 	" colorscheme
 	Plug 'mhartington/oceanic-next'
@@ -17,13 +19,13 @@ call plug#begin()
 	" python
 	Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 	Plug 'deoplete-plugins/deoplete-jedi'
-	Plug 'tmhedberg/SimpylFold'
+	"Plug 'tmhedberg/SimpylFold'
 
 	" vue
 	Plug 'posva/vim-vue'
 
 	" cloudformation
-	Plug 'elzr/vim-json'
+	"Plug 'elzr/vim-json'
 call plug#end()
 
 " plugin setup
@@ -35,6 +37,8 @@ let g:SimpylFold_docstring_preview = 1
 let g:airline_theme = 'oceanicnext'
 let g:showmarks_marks = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 let g:AWSVimValidate = 1
+let g:pymode_options_max_line_length = 120
+let g:pymode_options_color_column = 1
 
 " display settings
 syntax on
