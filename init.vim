@@ -19,7 +19,7 @@ call plug#begin()
 	" python
 	Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 	Plug 'deoplete-plugins/deoplete-jedi'
-	"Plug 'tmhedberg/SimpylFold'
+	Plug 'tmhedberg/SimpylFold'
 
 	" vue
 	Plug 'posva/vim-vue'
@@ -64,7 +64,8 @@ colorscheme OceanicNext
 let mapleader = ","
 nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader>v :NERDTreeFind<CR>
-nnoremap <Leader>b :Gblame<CR>
+nnoremap <Leader>g :Gblame<CR>
+nnoremap <silent> <Esc><Esc> <Esc>:noh<CR><Esc>
 
 " autocmds
 autocmd StdinReadPre * let s:std_in=1
