@@ -9,6 +9,7 @@ call plug#begin()
 	Plug 'othree/xml.vim'
 	Plug 'Raimondi/delimitMate'
 	Plug 'jacquesbh/vim-showmarks'
+	Plug 'spiiph/vim-space'
 	"Plug 'vim-scripts/L9'
 	"Plug 'vim-scripts/FuzzyFinder'
 
@@ -25,6 +26,7 @@ call plug#begin()
 	Plug 'posva/vim-vue'
 
 	" cloudformation
+	Plug 'pedrohdz/vim-yaml-folds'
 	"Plug 'elzr/vim-json'
 call plug#end()
 
@@ -71,4 +73,5 @@ nnoremap <silent> <Esc><Esc> <Esc>:noh<CR><Esc>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_inA") | NERDTree | endif
 autocmd BufEnter * DoShowMarks
+autocmd BufWritePost test*.py !pytest -q %
 
