@@ -42,6 +42,7 @@ let g:showmarks_marks = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 let g:AWSVimValidate = 1
 let g:pymode_options_max_line_length = 120
 let g:pymode_options_color_column = 1
+set rtp+=/usr/local/opt/fzf
 
 " display settings
 syntax on
@@ -75,6 +76,7 @@ nnoremap <Leader>g :Gblame<CR>
 nnoremap <Leader>t :!pytest -q %<CR>
 nnoremap <silent> <Esc><Esc> <Esc>:noh<CR><Esc>
 nnoremap <Leader>m :DoShowMarks<CR>
+map <Leader>f :FZF<CR>
 " nnoremap <Leader>/ :Ag<SPACE><C-R><C-W><SPACE>
 ":cw<CR>
 
