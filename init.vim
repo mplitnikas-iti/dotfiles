@@ -24,6 +24,7 @@ call plug#begin()
 
 	" vue
 	Plug 'posva/vim-vue'
+	Plug 'jelera/vim-javascript-syntax'
 
 	" cloudformation
 	Plug 'pedrohdz/vim-yaml-folds'
@@ -31,7 +32,7 @@ call plug#begin()
 call plug#end()
 
 " plugin setup
-let NERDTreeIgnore = ['\.pyc$', '\~$']
+let NERDTreeIgnore = ['\.pyc$', '\~$', '\.zip$']
 let g:deoplete#enable_at_startup = 1
 let g:python3_host_prog = '/usr/local/bin/python3'
 let g:python_host_prog = '/usr/bin/python'
@@ -62,16 +63,25 @@ endif
 syntax enable
 colorscheme OceanicNext
 
+" define grep as command w/ completion
+" TODO: get this to work
+" command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+
 " keybinds etc
 let mapleader = ","
 nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader>v :NERDTreeFind<CR>
 nnoremap <Leader>g :Gblame<CR>
+nnoremap <Leader>t :!pytest -q %<CR>
 nnoremap <silent> <Esc><Esc> <Esc>:noh<CR><Esc>
+nnoremap <Leader>m :DoShowMarks<CR>
+" nnoremap <Leader>/ :Ag<SPACE><C-R><C-W><SPACE>
+":cw<CR>
 
 " autocmds
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_inA") | NERDTree | endif
 autocmd BufEnter * DoShowMarks
-autocmd BufWritePost test*.py !pytest -q %
+autocmd BufEnter *.vue,*.js set expandtab
+" autocmd BufWritePost test*.py !pytest -q %
 
