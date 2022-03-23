@@ -1,7 +1,7 @@
 " import plugins
 call plug#begin()
 	Plug 'jacquesbh/vim-showmarks'
-	Plug 'othree/xml.vim'
+	Plug 'jremmen/vim-ripgrep'
 	Plug 'Raimondi/delimitMate'
 	Plug 'scrooloose/nerdtree'
 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -10,6 +10,7 @@ call plug#begin()
 	Plug 'spiiph/vim-space'
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-fugitive'
+	Plug 'tpope/vim-sleuth'  " match indent settings to present file
 	Plug 'tpope/vim-surround'
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
@@ -27,22 +28,24 @@ call plug#begin()
 
 	" vue
 	Plug 'jelera/vim-javascript-syntax'
+	Plug 'othree/xml.vim'
 	Plug 'posva/vim-vue'
 
 	" cloudformation
 	Plug 'pedrohdz/vim-yaml-folds'
 
 	" ruby / rails
+	Plug 'takkii/Bignyanco'
 	Plug 'tpope/vim-endwise'
 	Plug 'tpope/vim-rails'
-	
+
 call plug#end()
 
 " plugin setup
 let NERDTreeIgnore = ['\.pyc$', '\~$', '\.zip$']
 let g:deoplete#enable_at_startup = 1
-let g:python3_host_prog = '/usr/local/bin/python3'
-let g:python_host_prog = '/usr/bin/python'
+let g:python_host_prog = '/Users/matt.plitnikas/.pyenv/versions/neovim2/bin/python'
+let g:python3_host_prog = '/Users/matt.plitnikas/.pyenv/versions/neovim3/bin/python'
 let g:SimpylFold_docstring_preview = 1
 " let g:airline_theme = 'oceanicnext'
 let g:airline_theme = 'onedark'
@@ -56,14 +59,15 @@ set rtp+=/usr/local/opt/fzf
 syntax on
 set encoding=utf-8
 set tabstop=2
-set shiftwidth=2
-set scrolloff=5
+set shiftwidth=0
+set scrolloff=100
 set sidescrolloff=5
 set number
 set autoindent
 set cindent
 set showmatch
 set updatetime=100
+set switchbuf+=usetab,newtab
 
 " colorscheme setup
 if (has("nvim"))
@@ -80,17 +84,33 @@ colorscheme onedark
 let mapleader = ","
 nnoremap <Leader>n :NERDTreeToggle<CR>
 nnoremap <Leader>g :Gblame<CR>
-"nnoremap <Leader>t :!pytest -q %<CR>
+map <Leader>s :Rg<space>
 nnoremap <silent> <Esc><Esc> <Esc>:noh<CR><Esc>
 nnoremap <Leader>m :DoShowMarks<CR>
 map <Leader>f :FZF<CR>
-" nnoremap <Leader>/ :Ag<SPACE><C-R><C-W><SPACE>
-":cw<CR>
+command! -nargs=+ HG execute 'silent grep! <args>' | copen 33
+noremap H :tabprevious<CR>
+noremap L :tabnext<CR>
+noremap <C-y> :+tabmove<CR>
+noremap <C-t> :-tabmove<CR>
+" if ruby / rails
+autocmd FileType ruby nnoremap <Leader>t :Rails<CR>
+autocmd FileType ruby nnoremap <Leader>y :.Rails<CR>
+" this doesn't work yet :(
+" autocmd FileType ruby nnoremap <Leader>b Obyebug<Esc>j
+autocmd FileType ruby set foldmethod=syntax
+"let g:ruby_host_prog = '~/.rvm/gems/ruby-2.7.0/gems/neovim-0.8.1/exe/neovim-ruby-host'
+"let g:ruby_host_prog = 'rvm 2.7.0 do neovim-ruby-host'
+autocmd FileType python nnoremap <Leader>t :!pytest -q %<CR>
+
+" for deoplete / neosnippet
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+" smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " autocmds
 autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_inA") | NERDTree | endif
 autocmd BufEnter * DoShowMarks
 autocmd BufEnter *.vue,*.js set expandtab
-" autocmd BufWritePost test*.py !pytest -q %
 
